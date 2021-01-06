@@ -2,6 +2,8 @@
  
 A Program to convert CytusII Chart to StroyBoard.
 
+To-do: Use Object-Oriented Programming method to rebuild it. :)
+
 
 ## English
 1. Choose your C2V3 chart file, and put it on the program....
