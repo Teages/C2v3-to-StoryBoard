@@ -1,0 +1,358 @@
+{
+    "templates": {
+        "eventText": {
+            "size": 28,
+            "opacity": 1,
+            "y": "noteY:-0.05",
+            "x": 0,
+            "layer": 2,
+            "order": 100,
+            "letter_spacing": 0,
+            "states": [
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1,
+                    "commit": "end show text"
+                },
+                {
+                    "add_time": 0.673,
+                    "opacity": 1,
+                    "commit": "start hide text"
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                }
+            ]
+        },
+        "eventTextT": {
+            "states": [
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0,
+                    "commit": "New:start show text"
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1,
+                    "commit": "end show text"
+                },
+                {
+                    "add_time": 0.673,
+                    "opacity": 1,
+                    "commit": "start hide text"
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0000000001,
+                    "opacity": 0
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 0,
+                    "commit": "END:end show text"
+                }
+            ]
+        },
+        "eventTextL": {
+            "states": [
+                {
+                    "easing": "easeOutQuint",
+                    "add_time": 0,
+                    "letter_spacing": 0
+                },
+                {
+                    "add_time": 1.333,
+                    "letter_spacing": 150
+                }
+            ]
+        },
+        "downStyleClick": {
+            "path":"DownClick.png"
+        },
+        "downStyleDrag": {
+            "path":"DownDrag.png"
+        }
+    },
+    "texts": [],
+    "controllers":[]
+}
