@@ -443,12 +443,15 @@ for note in chart["note_list"]:
         newDownNoteDrag(note, notePositionEvents, downSprites)
 
 ### 生成UI变化: 以combo为全体ui
-if chart["is_start_without_ui"] == True:
-    uiEvents = [{'time': 0, 'ui_opacity': 0}]
-    scannerHideEvents = [{'time': 0, 'scanline_opacity': 0}]
-else:
-    uiEvents = [{'time': 0, 'ui_opacity': 1}]
-    scannerHideEvents = [{'time': 0, 'scanline_opacity': 1}]
+try:
+    if chart["is_start_without_ui"] == True:
+        uiEvents = [{'time': 0, 'ui_opacity': 0}]
+        scannerHideEvents = [{'time': 0, 'scanline_opacity': 0}]
+    else:
+        uiEvents = [{'time': 0, 'ui_opacity': 1}]
+        scannerHideEvents = [{'time': 0, 'scanline_opacity': 1}]
+except:
+    print("Start with UI.")
 
 for events in chart["event_order_list"]:
     for event in events["event_list"]:
@@ -515,7 +518,8 @@ print("Chart Cleaning...")
 cleanedChart = copy.deepcopy(chart)
 
 for page in cleanedChart["page_list"]:
-    del page["PositionFunction"]
+    if hasstate(page, "PositionFunction"):
+        del page["PositionFunction"]
 for page in cleanedChart["tempo_list"]:
     del page["time"]
 for note in cleanedChart["note_list"]:
