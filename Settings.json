@@ -1,0 +1,7 @@
+{
+    "Output":{
+        "path": "out",
+        "Chart":"Chart.json",
+        "StoryBoard":"Storyboard.json"
+    }
+}
