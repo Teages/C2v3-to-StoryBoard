@@ -541,6 +541,15 @@ for note in cleanedChart["note_list"]:
 #     if cleanedChart["event_order_list"][events]["event_list"] == []:
 #         del cleanedChart["event_order_list"][events]
 
+cleanedChart["event_order_list"] = []
+for events in chart["event_order_list"]:
+    cleanedEvent = {'tick':-1, 'event_list':[]}
+    for event in events["event_list"]:
+        if event["type"] == 1 or event["type"] == 0:
+            cleanedEvent["tick"] = events["tick"]
+            cleanedEvent["event_list"] += [event]
+    if cleanedEvent["tick"] != -1:
+        cleanedChart["event_order_list"] += copy.deepcopy([cleanedEvent])
 
 # print(json.dumps(storyboard))
 
