@@ -4,6 +4,8 @@ import json
 import sys
 import copy
 
+sys.setrecursionlimit(10000000)
+
 programVersion = 3
 cytoidVersion = '2.0.2'
 copyrightData = "Author Teages"
@@ -76,6 +78,10 @@ def tempoTimer(i):
         chart["tempo_list"][i]["time"] = (chart["tempo_list"][i-1]["time"] +
             (chart["tempo_list"][i]["tick"] - chart["tempo_list"][i-1]["tick"]) *
             chart["tempo_list"][i-1]["value"] / 1000000 / chart["time_base"])
+    if (i > 1000):
+        print("Too many tempo changed, IT IS ABUSE.")
+        input("Program STOP!")
+        exit()
     if chart["tempo_list"][i]["tick"] != chart["tempo_list"][-1]["tick"]:
         tempoTimer(i+1)
 
