@@ -6,7 +6,7 @@ import copy
 
 sys.setrecursionlimit(10000000)
 
-programVersion = 5
+programVersion = 6
 cytoidVersion = '2.0.2'
 copyrightData = "Author Teages"
 
@@ -458,6 +458,9 @@ try:
         scannerHideEvents = [{'time': 0, 'scanline_opacity': 1}]
 except:
     print("Start with UI.")
+    uiEvents = [{'time': 0, 'ui_opacity': 1}]
+    scannerHideEvents = [{'time': 0, 'scanline_opacity': 1}]
+
 
 for events in chart["event_order_list"]:
     for event in events["event_list"]:
@@ -533,6 +536,7 @@ for note in cleanedChart["note_list"]:
         note["type"] = 0
     elif note["type"] == 9:
         note["type"] = 3
+        
 # for events in cleanedChart["event_order_list"]:
 #     for event in events["event_list"]:
 #         if not (event["type"] == 0 or event["type"] == 1):
