@@ -6,7 +6,7 @@ import copy
 
 sys.setrecursionlimit(10000000)
 
-programVersion = 6
+programVersion = 7
 cytoidVersion = '2.0.2'
 copyrightData = "Author Teages"
 
