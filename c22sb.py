@@ -226,7 +226,7 @@ def newScannerPositionEvent(events, noteEvents, page, pageID, startTime, endTime
         endPos = center + direction * (scale / 2)
     endOut = endPos - edgelimiter(endPos)
     startOut = startPos - edgelimiter(startPos)
-    if startPos != edgelimiter(startPos):
+    if startPos != edgelimiter(startPos) and (scale != 0.0 and edgelimiter(startPos) != edgelimiter(endPos)):
         events += [{'time': startTime + 1e-10, 'override_scanline_pos': True,
                     'scanline_pos': edgelimiter(startPos), 'page': page}]
         startOut = startPos - edgelimiter(startPos)
@@ -246,13 +246,13 @@ def newScannerPositionEvent(events, noteEvents, page, pageID, startTime, endTime
                         'scanline_pos':tmpPos, 'tempo':thisTempo}]
         elif thisTempo["tick"] > endTick:
             break
-    if endPos != edgelimiter(endPos):
+    if endPos != edgelimiter(endPos) and (scale != 0.0 and edgelimiter(startPos) != edgelimiter(endPos)):
         # 算出出界时间
         endOutTick = endTick - abs(endOut) / scale * pagelen
         endOutTime = ticktotime(endOutTick)
         # 向上追溯
-        while events[-1]["time"] > endOutTime:
-            del event[-1]
+        while events != [] and events[-1]["time"] > endOutTime:
+            del events[-1]
         events += [{'time': endOutTime, 'override_scanline_pos': True,
                     'scanline_pos': edgelimiter(endPos)}]
     events += [{'time': endTime, 'override_scanline_pos': False,
