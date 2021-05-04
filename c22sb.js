@@ -1,9 +1,9 @@
 /*!
 
-C2v3 to StoryBoard v1.0.0 - A JavaScript class for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.0.1 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
-JavaScript File licenced under the GPLv3. See https://github.com/Teages/C2v3-to-StoryBoard/blob/main/LICENSE.
+JavaScript File licenced under the GPLv3. See https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE.
 
 defDownClickIMG and defDownDragIMG is under CC BY NC 4.0 license.
 
@@ -325,7 +325,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                 case 2:
                     // show UI
                     // UI
-                    if (event.args.indexOf(0)) {
+                    if (event.args.indexOf(0) >= 0) {
                         UIEvents.push.apply(UIEvents, [
                             {
                                 time: UIStart,
@@ -338,7 +338,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                         ])
                     }
                     // Scanline
-                    if (event.args.indexOf(4)) {
+                    if (event.args.indexOf(4) >= 0) {
                         ScanlineUIEvents.push.apply(ScanlineUIEvents, [
                             {
                                 time: ScanlineStart,
@@ -354,7 +354,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                 case 3:
                     // hide UI
                     // UI
-                    if (event.args.indexOf(0)) {
+                    if (event.args.indexOf(0) >= 0) {
                         UIEvents.push.apply(UIEvents, [
                             {
                                 time: UIStart,
@@ -367,7 +367,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                         ])
                     }
                     // Scanline
-                    if (event.args.indexOf(4)) {
+                    if (event.args.indexOf(4) >= 0) {
                         ScanlineUIEvents.push.apply(ScanlineUIEvents, [
                             {
                                 time: ScanlineStart,
@@ -383,7 +383,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                 case 4:
                     // show UI gradually
                     // UI
-                    if (event.args.indexOf(0)) {
+                    if (event.args.indexOf(0) >= 0) {
                         UIEvents.push.apply(UIEvents, [
                             {
                                 time: UIStart,
@@ -396,7 +396,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                         ])
                     }
                     // Scanline
-                    if (event.args.indexOf(4)) {
+                    if (event.args.indexOf(4) >= 0) {
                         ScanlineUIEvents.push.apply(ScanlineUIEvents, [
                             {
                                 time: ScanlineStart,
@@ -412,7 +412,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                 case 5:
                     // hide UI gradually
                     // UI
-                    if (event.args.indexOf(0)) {
+                    if (event.args.indexOf(0) >= 0) {
                         UIEvents.push.apply(UIEvents, [
                             {
                                 time: UIStart,
@@ -425,7 +425,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                         ])
                     }
                     // Scanline
-                    if (event.args.indexOf(4)) {
+                    if (event.args.indexOf(4) >= 0) {
                         ScanlineUIEvents.push.apply(ScanlineUIEvents, [
                             {
                                 time: ScanlineStart,
@@ -606,7 +606,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             orginalChart.note_list[note_p].y = y
         }
     }
-    
+
 
     // Dropping notes
     let dropnotes = []
@@ -627,18 +627,18 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                     path: StoryBoard.templates.downStyleClick.path,
                     height: 17,
                     layer: 2,
-                    x: "noteX:"+String(note.x),
+                    x: "noteX:" + String(note.x),
                     y: start_y,
-                    time: "start:"+String(note.id)+":-"+String(addtime),
+                    time: "start:" + String(note.id) + ":-" + String(addtime),
                     opacity: 1,
                     states: [
                         {
-                            time: "start:"+String(note.id)+":-"+String(addtime),
+                            time: "start:" + String(note.id) + ":-" + String(addtime),
                             y: start_y
                         },
                         {
-                            time: "start:"+String(note.id),
-                            y: "noteY:"+String(note.y),
+                            time: "start:" + String(note.id),
+                            y: "noteY:" + String(note.y),
                             destroy: true
                         }
                     ]
@@ -649,18 +649,18 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                     path: StoryBoard.templates.downStyleDrag.path,
                     height: 17,
                     layer: 2,
-                    x: "noteX:"+String(note.x),
+                    x: "noteX:" + String(note.x),
                     y: start_y,
-                    time: "start:"+String(note.id)+":-"+String(addtime),
+                    time: "start:" + String(note.id) + ":-" + String(addtime),
                     opacity: 1,
                     states: [
                         {
-                            time: "start:"+String(note.id)+":-"+String(addtime),
+                            time: "start:" + String(note.id) + ":-" + String(addtime),
                             y: start_y
                         },
                         {
-                            time: "start:"+String(note.id),
-                            y: "noteY:"+String(note.y),
+                            time: "start:" + String(note.id),
+                            y: "noteY:" + String(note.y),
                             destroy: true
                         }
                     ]
@@ -668,9 +668,9 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             }
         }
     }
-    StoryBoard.sprites.push.apply(StoryBoard.sprites,deepcopy(dropnotes))
+    StoryBoard.sprites.push.apply(StoryBoard.sprites, deepcopy(dropnotes))
 
-    StoryBoard.note_controllers.push.apply(StoryBoard.note_controllers,deepcopy(noteControllers))
+    StoryBoard.note_controllers.push.apply(StoryBoard.note_controllers, deepcopy(noteControllers))
 
 
 

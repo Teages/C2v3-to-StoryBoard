@@ -89,8 +89,8 @@
       zip.file("chart.json", JSON.stringify(convertResult.chart))
       zip.file("storyboard.json", JSON.stringify(convertResult.StoryBoard))
 
-      zip.file("DownClick.png", defDownClickIMG, {base64: true})
-      zip.file("DownDrag.png", defDownDragIMG, {base64: true})
+      zip.file("DownClick.png", defDownClickIMG, { base64: true })
+      zip.file("DownDrag.png", defDownDragIMG, { base64: true })
 
       zip.generateAsync({ type: "blob" })
         .then(function (content) {
@@ -113,13 +113,20 @@
 
   <div class="mdui-card mdui-hoverable mdui-center" style="width: 500px">
 
-    <!-- 卡片的标题和副标题 -->
+    <div class="mdui-card-header">
+      <img class="mdui-card-header-avatar" src="favicon.ico" />
+      <div class="mdui-card-header-title">C2v3 to StoryBoard</div>
+      <div class="mdui-card-header-subtitle">A tool to convert C2v3 Chart to Cytoid StoryBoard</div>
+    </div>
+    
+    <!-- 
     <div class="mdui-card-primary">
+      <img class="mdui-card-header-avatar" src="favicon.ico" />
       <div class="mdui-card-primary-title">C2v3 to StoryBoard</div>
       <div class="mdui-card-primary-subtitle">A tool to convert C2v3 Chart to Cytoid StoryBoard</div>
     </div>
+    -->
 
-    <!-- 卡片的内容 -->
     <div class="mdui-card-content">
       <div class="mdui-tab" mdui-tab>
         <a href="#upload-file" class="mdui-ripple" onclick="cleanChart()">Upload</a>
@@ -148,12 +155,45 @@
       </div>
     </div>
 
-    <!-- 卡片的按钮 -->
     <div class="mdui-card-actions">
+      <button class="mdui-btn mdui-btn-icon mdui-ripple mdui-float-left" mdui-dialog="{target: '#about-dialog'}"><i
+          class="mdui-icon material-icons">&#xe88f;</i></button>
       <button class="mdui-btn mdui-float-right" onclick="downloadResult()">Download</button>
     </div>
 
   </div>
+
+  <div class="mdui-dialog" id="about-dialog">
+    <div class="mdui-dialog-title">About</div>
+    <div id="about-content" class="mdui-dialog-content">
+      <div class="mdui-dialog-content">
+        <p>Version: 1.0.1</p>
+        <p>A JavaScript for converting Cytus II Chart to Cytoid StoryBoard</p>
+        <p>© 2021 Teages</p>
+        <p>JavaScript File licenced under the GPLv3.</p>
+        <p>See <a href="https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE"
+            style="color: cornflowerblue;">https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE</a>.</p>
+        <h2>Update log</h3>
+          <h3>v 1.0.1</h3>
+          <ul>
+            <li>
+              Bug Fix: Scanline and other UI didn't detach.
+            </li>
+          </ul>
+          <h3>v 1.0.0</h3>
+          <ul>
+            <li>
+              Basic function
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="mdui-dialog-actions">
+      <button class="mdui-btn mdui-ripple" mdui-dialog-close>close</button>
+    </div>
+  </div>
+
 
 </body>
 
