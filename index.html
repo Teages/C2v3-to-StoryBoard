@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-cmn-HconvertResult">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <!-- MDUI CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+    integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
+  <!-- MDUI JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+    integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+    crossorigin="anonymous"></script>
+  <script src="./c22sb.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.6.0/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <style>
+    body {
+      height: 100vh;
+    }
+  </style>
+  <title>C2v3 to StoryBoard</title>
+  <script>
+    var convertResult = {}
+    function convertFormInput() {
+      let chart = {}
+      try {
+        chart = JSON.parse(document.getElementById("chart-input").value)
+      } catch (error) {
+        mdui.snackbar({
+          message: 'Error: JSON Error'
+        });
+        return;
+      }
+      convert(chart)
+    }
+    function convertFormFile() {
+      document.getElementById("selected-file").click();
+    }
+    window.onload = function () {
+      document.getElementById("selected-file").addEventListener('change', function () {
+        if (this.files.length === 0) {
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function () {
+          let chart = {}
+          try {
+            chart = JSON.parse(reader.result)
+          } catch (error) {
+            mdui.snackbar({
+              message: 'Error: JSON Error'
+            });
+            return;
+          }
+          convert(chart)
+        }
+        reader.readAsText(this.files[0])
+      })
+    }
+    function cleanChart() {
+      convertResult = {}
+    }
+    function convert(chart) {
+      try {
+        convertResult = c22sb(chart)
+        mdui.snackbar({
+          message: 'Sucsses'
+        });
+      } catch (error) {
+        mdui.snackbar({
+          message: 'Error: Unknown Chart'
+        });
+        return;
+      }
+    }
+    function downloadResult() {
+      if (!convertResult.hasOwnProperty('StoryBoard')) {
+        mdui.snackbar({
+          message: 'Please Convert First'
+        });
+        return;
+      }
+      var zip = new JSZip()
+      zip.file("chart.json", JSON.stringify(convertResult.chart))
+      zip.file("storyboard.json", JSON.stringify(convertResult.StoryBoard))
+
+      zip.file("DownClick.png", defDownClickIMG, {base64: true})
+      zip.file("DownDrag.png", defDownDragIMG, {base64: true})
+
+      zip.generateAsync({ type: "blob" })
+        .then(function (content) {
+          // see FileSaver.js
+          if (document.getElementById("filename-input").value == "") {
+            return;
+          } else if (document.getElementById("filename-input").value.slice(-4) != ".zip") {
+            document.getElementById("filename-input").value = document.getElementById("filename-input").value + ".zip"
+          }
+          saveAs(content, document.getElementById("filename-input").value);
+          mdui.snackbar({
+            message: 'Downloading...'
+          });
+        });
+    }
+  </script>
+</head>
+
+<body class="mdui-valign mdui-center">
+
+  <div class="mdui-card mdui-hoverable mdui-center" style="width: 500px">
+
+    <!-- 卡片的标题和副标题 -->
+    <div class="mdui-card-primary">
+      <div class="mdui-card-primary-title">C2v3 to StoryBoard</div>
+      <div class="mdui-card-primary-subtitle">A tool to convert C2v3 Chart to Cytoid StoryBoard</div>
+    </div>
+
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content">
+      <div class="mdui-tab" mdui-tab>
+        <a href="#upload-file" class="mdui-ripple" onclick="cleanChart()">Upload</a>
+        <a href="#input-file" class="mdui-ripple" onclick="cleanChart()">Input</a>
+      </div>
+      <div id="upload-file" class="mdui-p-a-2">
+        Upload your C2v3 Chart.
+        <div class="mdui-card-actions">
+          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormFile()">Upload</button>
+          <input type="file" style="display: none;" id="selected-file" accept=".json, .txt">
+        </div>
+      </div>
+      <div id="input-file" class="mdui-p-a-2">
+        Input your C2v3 Chart.
+        <div class="mdui-card-actions">
+          <div class="mdui-textfield">
+            <input id="chart-input" class="mdui-textfield-input" type="text" placeholder="Paste your chart here" />
+          </div>
+          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormInput()">Convert</button>
+        </div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+        <label class="mdui-textfield-label">Save As</label>
+        <input id="filename-input" class="mdui-textfield-input" type="text" value="C2v3.zip" required />
+        <div class="mdui-textfield-error">File name should not be void</div>
+      </div>
+    </div>
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+      <button class="mdui-btn mdui-float-right" onclick="downloadResult()">Download</button>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
