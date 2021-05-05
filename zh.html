@@ -60,6 +60,7 @@
           convert(chart)
         }
         reader.readAsText(this.files[0])
+        document.getElementById("selected-file").value = ''
       })
     }
     function cleanChart() {
@@ -164,7 +165,7 @@
       </div>
       <div class="mdui-chip" mdui-dialog="{target: '#about-dialog'}">
         <span class="mdui-chip-icon"><i class="mdui-icon material-icons">&#xe88f;</i></button></span>
-        <span class="mdui-chip-title">v 1.0.1</span>
+        <span class="mdui-chip-title">v 1.1.0</span>
       </div>
 
       <!--
@@ -181,7 +182,7 @@
     <div class="mdui-dialog-title">关于</div>
     <div id="about-content" class="mdui-dialog-content">
       <div class="mdui-dialog-content">
-        <p>版本: 1.0.1</p>
+        <p>版本: 1.1.0</p>
         <p>一个用来将 Cytus II 谱面转换为 Cytoid StoryBoard 的 JavaScript</p>
         <p>© 2021 Teages</p>
         <p>JavaScript 文件基于 GPLv3 分发.</p>
@@ -189,6 +190,15 @@
             style="color: cornflowerblue;">https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE</a>.
         </p>
         <h2>更新日志</h3>
+          <h3>v 1.1.0</h3>
+          <ul>
+            <li>
+              Scanline Color mannager
+            </li>
+            <li>
+              Bug Fix: Tempo does not run as expected in Position Function.
+            </li>
+          </ul>
           <h3>v 1.0.1</h3>
           <ul>
             <li>

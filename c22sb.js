@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.0.1 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.1.0 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under the GPLv3. See https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE.
@@ -550,6 +550,21 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                         override_scanline_pos: true,
                         scanline_pos: (direction > 0 ? in_top_pos : in_bottom_pos)
                     })
+                    // IF TEMPO CHANGED
+                    for (tempo_p in orginalChart.tempo_list) {
+                        let tempo = orginalChart.tempo_list[tempo_p]
+                        let start_tick = page.start_tick + page_length * before_size
+                        let end_tick = page.end_tick - page_length * after_size
+                        if (tempo.tick > page.start_tick && tempo.tick < page.end_tick) {
+                            let start_pos = (direction > 0 ? in_top_pos : in_bottom_pos)
+                            let end_pos = (direction > 0 ? in_bottom_pos : in_top_pos)
+                            let tempo_pos = start_pos + direction * Math.abs(end_pos - start_pos) * ((tempo.tick - start_tick)/(end_tick - start_tick))
+                            ScanlineController.push({
+                                time: tickToTime(tempo.tick),
+                                scanline_pos: tempo_pos
+                            })
+                        }
+                    }
                     ScanlineController.push({
                         time: tickToTime(page.end_tick - page_length * after_size),
                         override_scanline_pos: false,
@@ -697,24 +712,24 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             ])
             return;
         } else {
-            for (event_p in cEvents) {
-                if (cEvents[event_p].time < time && cEvents[event_p + 1].time > time) {
+            for (let event_p = 0; event_p < cEvents.length; event_p++) {
+                if (time >= cEvents[event_p].time && time < cEvents[event_p+1].time) {
                     let translateScale = (time - cEvents[event_p].time) / (cEvents[event_p + 1].time - cEvents[event_p].time)
                     let lastColorRGB = hexToRgb(cEvents[event_p].scanline_color);
                     let nextColorRGB = hexToRgb(cEvents[event_p+1].scanline_color);
                     let middleColor = rgbToHex(
-                        Math.abs((lastColorRGB.r - nextColorRGB.r)*translateScale),
-                        Math.abs((lastColorRGB.g - nextColorRGB.g)*translateScale),
-                        Math.abs((lastColorRGB.b - nextColorRGB.b)*translateScale)
+                        Math.abs((lastColorRGB.r + nextColorRGB.r)*translateScale),
+                        Math.abs((lastColorRGB.g + nextColorRGB.g)*translateScale),
+                        Math.abs((lastColorRGB.b + nextColorRGB.b)*translateScale)
                     )
-                    cEvents.splice(event_p)
+                    cEvents.splice(event_p+1)
                     cEvents.push.apply(cEvents, [
                         { time: time, scanline_color: middleColor },
                         { time: time + 1, scanline_color: color },
                         { time: time + 4, scanline_color: color },
                         { time: time + 5, scanline_color: white }
                     ])
-                    break;
+                    return;
                 }
             }
         }
@@ -732,7 +747,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             } : null;
         }
         function rgbToHex(r, g, b) {
-            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1,7);
         }
 
     }
