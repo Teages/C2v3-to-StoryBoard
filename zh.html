@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="zh-cn">
 
 <head>
   <meta charset="utf-8">
@@ -32,7 +32,7 @@
         chart = JSON.parse(document.getElementById("chart-input").value)
       } catch (error) {
         mdui.snackbar({
-          message: 'Error: JSON Error'
+          message: '错误: JSON 格式错误'
         });
         return;
       }
@@ -53,7 +53,7 @@
             chart = JSON.parse(reader.result)
           } catch (error) {
             mdui.snackbar({
-              message: 'Error: JSON Error'
+              message: '错误: JSON 格式错误'
             });
             return;
           }
@@ -73,7 +73,7 @@
         });
       } catch (error) {
         mdui.snackbar({
-          message: 'Error: Unknown Chart'
+          message: '错误: 不受支持的谱面'
         });
         return;
       }
@@ -81,7 +81,7 @@
     function downloadResult() {
       if (!convertResult.hasOwnProperty('StoryBoard')) {
         mdui.snackbar({
-          message: 'Please Convert First'
+          message: '请先转换谱面'
         });
         return;
       }
@@ -102,7 +102,7 @@
           }
           saveAs(content, document.getElementById("filename-input").value);
           mdui.snackbar({
-            message: 'Downloading...'
+            message: '下载中...'
           });
         });
     }
@@ -116,7 +116,7 @@
     <div class="mdui-card-header">
       <img class="mdui-card-header-avatar" src="/favicon.ico" />
       <div class="mdui-card-header-title">C2v3 to StoryBoard</div>
-      <div class="mdui-card-header-subtitle">A tool to convert C2v3 Chart to Cytoid StoryBoard</div>
+      <div class="mdui-card-header-subtitle">将 C2v3 谱面转换为 Cytoid 的 StoryBoard</div>
     </div>
 
     <!-- 
@@ -129,29 +129,29 @@
 
     <div class="mdui-card-content">
       <div class="mdui-tab" mdui-tab>
-        <a href="#upload-file" class="mdui-ripple" onclick="cleanChart()">Upload</a>
-        <a href="#input-file" class="mdui-ripple" onclick="cleanChart()">Input</a>
+        <a href="#upload-file" class="mdui-ripple" onclick="cleanChart()">上传</a>
+        <a href="#input-file" class="mdui-ripple" onclick="cleanChart()">手动输入</a>
       </div>
       <div id="upload-file" class="mdui-p-a-2">
-        Upload your C2v3 Chart.
+        上传你的 C2v3 谱面
         <div class="mdui-card-actions">
-          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormFile()">Upload</button>
+          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormFile()">上传</button>
           <input type="file" style="display: none;" id="selected-file" accept=".json, .txt">
         </div>
       </div>
       <div id="input-file" class="mdui-p-a-2">
-        Input your C2v3 Chart.
+        输入你的 C2v3 谱面
         <div class="mdui-card-actions">
           <div class="mdui-textfield">
-            <input id="chart-input" class="mdui-textfield-input" type="text" placeholder="Paste your chart here" />
+            <input id="chart-input" class="mdui-textfield-input" type="text" placeholder="在此处粘贴你的谱面" />
           </div>
-          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormInput()">Convert</button>
+          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormInput()">转换</button>
         </div>
       </div>
       <div class="mdui-textfield mdui-textfield-floating-label">
-        <label class="mdui-textfield-label">Save As</label>
+        <label class="mdui-textfield-label">保存为</label>
         <input id="filename-input" class="mdui-textfield-input" type="text" value="C2v3.zip" required />
-        <div class="mdui-textfield-error">File name should not be void</div>
+        <div class="mdui-textfield-error">文件名不能为空</div>
       </div>
     </div>
 
@@ -166,39 +166,39 @@
         <i class="mdui-icon material-icons">&#xe88f;</i>
       </button>
       -->
-      <button class="mdui-btn mdui-float-right" onclick="downloadResult()">Download</button>
+      <button class="mdui-btn mdui-float-right" onclick="downloadResult()">下载</button>
     </div>
 
   </div>
 
   <div class="mdui-dialog" id="about-dialog">
-    <div class="mdui-dialog-title">About</div>
+    <div class="mdui-dialog-title">关于</div>
     <div id="about-content" class="mdui-dialog-content">
       <div class="mdui-dialog-content">
-        <p>Version: 1.0.1</p>
-        <p>A JavaScript for converting Cytus II Chart to Cytoid StoryBoard</p>
+        <p>版本: 1.0.1</p>
+        <p>一个用来将 Cytus II 谱面转换为 Cytoid StoryBoard 的 JavaScript</p>
         <p>© 2021 Teages</p>
-        <p>JavaScript File licenced under the GPLv3.</p>
-        <p>See <a href="https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE"
+        <p>JavaScript 文件基于 GPLv3 分发.</p>
+        <p>详细请见 <a href="https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE"
             style="color: cornflowerblue;">https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE</a>.</p>
-        <h2>Update log</h3>
+        <h2>更新日志</h3>
           <h3>v 1.0.1</h3>
           <ul>
             <li>
-              Bug Fix: Scanline and other UI didn't detach.
+              Bug 修复: 没有分离扫描线和其他UI的变换.
             </li>
           </ul>
           <h3>v 1.0.0</h3>
           <ul>
             <li>
-              Basic function
+              基本功能实现
             </li>
           </ul>
       </div>
     </div>
 
     <div class="mdui-dialog-actions">
-      <button class="mdui-btn mdui-ripple" mdui-dialog-close>close</button>
+      <button class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
     </div>
   </div>
 
