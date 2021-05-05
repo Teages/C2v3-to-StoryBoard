@@ -69,7 +69,7 @@
       try {
         convertResult = c22sb(chart)
         mdui.snackbar({
-          message: 'Sucsses'
+          message: 'Succseefully. Now download the StoryBoard!'
         });
       } catch (error) {
         mdui.snackbar({
@@ -128,19 +128,20 @@
     -->
 
     <div class="mdui-card-content">
+      <p>1. Choose your way to upload your C2v3 Chart</p>
       <div class="mdui-tab" mdui-tab>
         <a href="#upload-file" class="mdui-ripple" onclick="cleanChart()">Upload</a>
-        <a href="#input-file" class="mdui-ripple" onclick="cleanChart()">Input</a>
+        <a href="#input-file" class="mdui-ripple" onclick="cleanChart()">Manual input</a>
       </div>
       <div id="upload-file" class="mdui-p-a-2">
-        Upload your C2v3 Chart.
+        <p>2. Upload your C2v3 Chart.</p>
         <div class="mdui-card-actions">
-          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormFile()">Upload</button>
+          <button class="mdui-btn mdui-btn-raised mdui-float-left" onclick="convertFormFile()">Upload & Convert</button>
           <input type="file" style="display: none;" id="selected-file" accept=".json, .txt">
         </div>
       </div>
       <div id="input-file" class="mdui-p-a-2">
-        Input your C2v3 Chart.
+        <p>2. Input your C2v3 Chart.</p>
         <div class="mdui-card-actions">
           <div class="mdui-textfield">
             <input id="chart-input" class="mdui-textfield-input" type="text" placeholder="Paste your chart here" />
@@ -149,6 +150,7 @@
         </div>
       </div>
       <div class="mdui-textfield mdui-textfield-floating-label">
+        <p>3. Input the file name and download it</p>
         <label class="mdui-textfield-label">Save As</label>
         <input id="filename-input" class="mdui-textfield-input" type="text" value="C2v3.zip" required />
         <div class="mdui-textfield-error">File name should not be void</div>
@@ -156,9 +158,13 @@
     </div>
 
     <div class="mdui-card-actions">
-      <div class="mdui-chip mdui-float-left" mdui-dialog="{target: '#about-dialog'}">
+      <div class="mdui-chip" mdui-dialog="{target: '#lang-select'}">
+        <span class="mdui-chip-icon"><i class="mdui-icon material-icons">&#xe894;</i></button></span>
+        <span class="mdui-chip-title">Languages</span>
+      </div>
+      <div class="mdui-chip" mdui-dialog="{target: '#about-dialog'}">
         <span class="mdui-chip-icon"><i class="mdui-icon material-icons">&#xe88f;</i></button></span>
-        <span class="mdui-chip-title">v 1.0.1 </span>
+        <span class="mdui-chip-title">v 1.0.1</span>
       </div>
 
       <!--
@@ -199,6 +205,19 @@
 
     <div class="mdui-dialog-actions">
       <button class="mdui-btn mdui-ripple" mdui-dialog-close>close</button>
+    </div>
+  </div>
+  <div class="mdui-dialog" id="lang-select">
+    <div class="mdui-dialog-title">Language</div>
+    <div class="mdui-dialog-content">
+      <div class="mdui-btn-group">
+        <button type="button" class="mdui-btn mdui-btn-active">English</button>
+        <button type="button" class="mdui-btn" onclick="window.location.href='/zh.html'">中文(简体)</button>
+      </div>
+
+    </div>
+    <div class="mdui-dialog-actions">
+      <button class="mdui-btn mdui-ripple" mdui-dialog-close>cancel</button>
     </div>
   </div>
 

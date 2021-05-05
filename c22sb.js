@@ -295,7 +295,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
     StoryBoard.texts.push.apply(StoryBoard.texts, textEventLs)
 
     // UI event
-    let UIEvents = [], ScanlineUIEvents = []
+    let UIEvents = [], ScanlineUIEvents = [], ScanlineColorEvents = []
     if (orginalChart.hasOwnProperty('is_start_without_ui') && orginalChart.is_start_without_ui) {
         UIEvents.push({
             time: 0,
@@ -322,6 +322,12 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             let UIStart = Math.max(time, UIEvents[UIEvents.length - 1].time)
             let ScanlineStart = Math.max(time, ScanlineUIEvents[ScanlineUIEvents.length - 1].time)
             switch (event.type) {
+                case 0:
+                    newScanlineColor(time,"#D25669",ScanlineColorEvents)
+                    break;
+                case 1:
+                    newScanlineColor(time,"#A0C8Bf",ScanlineColorEvents)
+                    break;
                 case 2:
                     // show UI
                     // UI
@@ -444,6 +450,9 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                 case 7:
                     // not support for now
                     break
+                case 8:
+                    newScanlineColor(time,event.args.split(",")[1],ScanlineColorEvents)
+                    break
                 default:
                     break
             }
@@ -452,6 +461,10 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
     StoryBoard.controllers.push({
         comment: "Scanline UI Events",
         states: deepcopy(ScanlineUIEvents)
+    })
+    StoryBoard.controllers.push({
+        comment: "Scanline Color Events",
+        states: deepcopy(ScanlineColorEvents)
     })
     StoryBoard.controllers.push({
         comment: "Other UI Events",
@@ -673,7 +686,56 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
     StoryBoard.note_controllers.push.apply(StoryBoard.note_controllers, deepcopy(noteControllers))
 
 
+    function newScanlineColor(time, color, cEvents) {
+        let white = "#FFFFFF"
+        if (cEvents.length === 0 || time >= cEvents[cEvents.length - 1].time) {
+            cEvents.push.apply(cEvents, [
+                { time: time, scanline_color: white },
+                { time: time + 1, scanline_color: color },
+                { time: time + 4, scanline_color: color },
+                { time: time + 5, scanline_color: white }
+            ])
+            return;
+        } else {
+            for (event_p in cEvents) {
+                if (cEvents[event_p].time < time && cEvents[event_p + 1].time > time) {
+                    let translateScale = (time - cEvents[event_p].time) / (cEvents[event_p + 1].time - cEvents[event_p].time)
+                    let lastColorRGB = hexToRgb(cEvents[event_p].scanline_color);
+                    let nextColorRGB = hexToRgb(cEvents[event_p+1].scanline_color);
+                    let middleColor = rgbToHex(
+                        Math.abs((lastColorRGB.r - nextColorRGB.r)*translateScale),
+                        Math.abs((lastColorRGB.g - nextColorRGB.g)*translateScale),
+                        Math.abs((lastColorRGB.b - nextColorRGB.b)*translateScale)
+                    )
+                    cEvents.splice(event_p)
+                    cEvents.push.apply(cEvents, [
+                        { time: time, scanline_color: middleColor },
+                        { time: time + 1, scanline_color: color },
+                        { time: time + 4, scanline_color: color },
+                        { time: time + 5, scanline_color: white }
+                    ])
+                    break;
+                }
+            }
+        }
+        // thank https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+        function hexToRgb(hex) {
+            var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+                return r + r + g + g + b + b;
+            });
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
 
+    }
     function cleanChart() {
         cleanedChart.time_base = inputChart.time_base
         cleanedChart.start_offset_time = inputChart.start_offset_time
