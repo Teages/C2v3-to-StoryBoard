@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.1.1 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard vBeta - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under the GPLv3. See https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE.
@@ -211,6 +211,8 @@ const defTempStoryBoard = {
     "controllers": [],
     "note_controllers": []
 }
+
+console.log("C22SB: DEVELPOER VERSION")
 
 function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
     let orginalChart = deepcopy(inputChart)
@@ -603,7 +605,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             !(page.PositionFunction.Arguments[0] == 1 && page.PositionFunction.Arguments[1] == 0)) {
             // if posfun used
             let direction = page.scan_line_direction
-
+            
             let scale = page.PositionFunction.Arguments[0]
             let offset = page.PositionFunction.Arguments[1]
             if (scale < 0) {

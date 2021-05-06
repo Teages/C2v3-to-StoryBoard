@@ -15,7 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
     integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
     crossorigin="anonymous"></script>
-  <script src="/c22sb.js"></script>
+  <script src="./c22sb.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.6.0/dist/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
   <style>
@@ -160,13 +160,13 @@
     </div>
 
     <div class="mdui-card-actions">
-      <div class="mdui-chip" mdui-dialog="{target: '#lang-select'}">
+      <div class="mdui-chip" onclick="window.location.href='/'">
         <span class="mdui-chip-icon"><i class="mdui-icon material-icons">&#xe894;</i></button></span>
-        <span class="mdui-chip-title">Languages</span>
+        <span class="mdui-chip-title">Back</span>
       </div>
       <div class="mdui-chip" mdui-dialog="{target: '#about-dialog'}">
         <span class="mdui-chip-icon"><i class="mdui-icon material-icons">&#xe88f;</i></button></span>
-        <span class="mdui-chip-title">v 1.1.1</span>
+        <span class="mdui-chip-title">Beta</span>
       </div>
 
       <!--
@@ -183,40 +183,12 @@
     <div class="mdui-dialog-title">About</div>
     <div id="about-content" class="mdui-dialog-content">
       <div class="mdui-dialog-content">
-        <p>Version: 1.1.0</p>
         <p>A JavaScript for converting Cytus II Chart to Cytoid StoryBoard</p>
         <p>© 2021 Teages</p>
         <p>JavaScript File licenced under the GPLv3.</p>
         <p>See <a href="https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE"
             style="color: cornflowerblue;">https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE</a>.</p>
-        <h2>Update log</h3>
-          <h3>v 1.1.1</h3>
-          <ul>
-            <li>
-              Bug Fix: Note's Position error in Position Function.
-            </li>
-          </ul>
-          <h3>v 1.1.0</h3>
-          <ul>
-            <li>
-              Scanline Color mannager
-            </li>
-            <li>
-              Bug Fix: Tempo does not run as expected in Position Function.
-            </li>
-          </ul>
-          <h3>v 1.0.1</h3>
-          <ul>
-            <li>
-              Bug Fix: Scanline and other UI didn't detach.
-            </li>
-          </ul>
-          <h3>v 1.0.0</h3>
-          <ul>
-            <li>
-              Basic function
-            </li>
-          </ul>
+        <h2>Beta Version</h3>
       </div>
     </div>
 
