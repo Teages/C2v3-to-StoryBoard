@@ -1,6 +1,8 @@
 # C2v3 to StoryBoard
+
+[![CodeFactor](https://www.codefactor.io/repository/github/teages/c2v3-to-storyboard/badge)](https://www.codefactor.io/repository/github/teages/c2v3-to-storyboard)
  
-A Program to convert CytusII Chart to StroyBoard.
+A Program to convert CytusII Chart to Cytoid StroyBoard.
 
 [Link | 链接](https://c2v3.teages.xyz)
 
