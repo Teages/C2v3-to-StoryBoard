@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.1.1 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.1.2 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under the GPLv3. See https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE.
@@ -718,9 +718,9 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                     let lastColorRGB = hexToRgb(cEvents[event_p].scanline_color);
                     let nextColorRGB = hexToRgb(cEvents[event_p+1].scanline_color);
                     let middleColor = rgbToHex(
-                        Math.abs((lastColorRGB.r + nextColorRGB.r)*translateScale),
-                        Math.abs((lastColorRGB.g + nextColorRGB.g)*translateScale),
-                        Math.abs((lastColorRGB.b + nextColorRGB.b)*translateScale)
+                        Math.abs(Math.min(lastColorRGB.r, nextColorRGB.r) + Math.abs(lastColorRGB.r - nextColorRGB.r)*translateScale),
+                        Math.abs(Math.min(lastColorRGB.g, nextColorRGB.g) + Math.abs(lastColorRGB.g - nextColorRGB.g)*translateScale),
+                        Math.abs(Math.min(lastColorRGB.b, nextColorRGB.b) + Math.abs(lastColorRGB.b - nextColorRGB.b)*translateScale)
                     )
                     cEvents.splice(event_p+1)
                     cEvents.push.apply(cEvents, [
