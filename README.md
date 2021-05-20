@@ -10,12 +10,12 @@ A Program to convert CytusII Chart to Cytoid StroyBoard.
 Just follow the guide on site
 
 **!!! Important !!!**
-The PNG and PSD files are share with private. 
+The PNG and PSD files are share MIT license. 
 The generated Chart.json and the generated StoryBoard.json is not guaranteed.
 
 ## 中文
 只需要跟随网站的提示
 
 **!!! 重要 !!!**
-项目附带的PNG和PSD文件根据私有协议分享.
+项目附带的PNG和PSD文件根据mit协议分享.
 程序作者不对生成的Chart.json和StoryBoard.json作任何保证或承担任何后果.
