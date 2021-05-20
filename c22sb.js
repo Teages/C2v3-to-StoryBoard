@@ -3,16 +3,14 @@
 C2v3 to StoryBoard v1.1.2 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
-JavaScript File licenced under the GPLv3. See https://github.com/Teages/C2v3-to-StoryBoard/blob/javascript/LICENSE.
+JavaScript File licenced under private.
 
-defDownClickIMG and defDownDragIMG is under CC BY NC 4.0 license.
+defDownClickIMG and defDownDragIMG is under private.
 
 */
 
-// CC BY NC 4.0
 const defDownClickIMG = "iVBORw0KGgoAAAANSUhEUgAAAIYAAAATCAMAAABiDIVTAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAGBQTFRFAAAA////////////S7H/Naf/////////////6fX/h8v/O6n/////ntX/PKr/////////1e3/RK3/////////////////////wOT/N6j/Ra7/ltH//f7/////tt//v+P/EOrXnwAAACB0Uk5TACvV////FaHt////av//Oez//4492nrz//////+Z//8F9w01AAAAuElEQVR4nM2WxxKFIAxFVYy99+7//6X6SNjKW5jJ3cGkHO7QHEeQXE+hfGCRT/0810AEYaTn4iTloQBIk1j3jMIAMTJCywsuCoAip66ZpigrHNcNHwVAU2PbqvxhtMYMTgoAY0f7UHQ9mcG0PUk+2dF3N8Yw4miabZKXdVMv2tbFptI8Yfw43Bg7ZR9WazjfIB6dVqUOCt//x7ChUOpzjK/cELI3hJwUIfeGlFtUyJsi5YUV8t8QoAtT1S3D/z5gZQAAAABJRU5ErkJggg=="
 const defDownDragIMG = "iVBORw0KGgoAAAANSUhEUgAAAGUAAAATCAMAAAC+2TMhAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAMlQTFRFAAAA////////////T+ipOeWe////////////6fz0ivDFPuah////n/LQQOahO+WfPeWgQeai////////1vrrSOelWemucuy6kfHJlfHLf+7AWumu////ZOuzzvnn/f/+8v350Pnofe6/////////OuWeXOqv+P78kPDJ////////wvfhg+/C7P32w/fiSuem////uPbcTeiovPbe+/793/vvYeqxUeiqyvjl5PzyaOu1vfbfiO/FXeqw1/rslPHKde270/np1Pnq+2SKhQAAAEN0Uk5TACvV////FaHt////av//////Oez//////////47///////892v////968///////mf///////////////////////1RmsvEAAAD6SURBVHicvZXHFoJADEUVGRBREAF774AN7L38/0eJkmHhJmc8OtkN5yWXR5IhkeAXSSEFIZJfhEjLCcmYIcnp6JmSUX8CIUTNKFHJtCwBJUvJOQ1N1/Oaoeo4RsvRotkIUjDhbNlocr5YKleqNQPH2BZUNQtvSj22guc2mkor1e50cSWJzdRfkF6fWkE7PxjCC47G+EcTqZl+L6Q4Lpw8NNOYTEE7m6MU3QOt64SUBXXmo4nBcgXa9QYVE58WXrBRtjuq3R/+RwmOrW+9sPTl1AbtjrUvLDN2vsCMXVlnjGlfbvfXvjwquPJjXzjtPp97jNOdzOf/8v94ApSvLZQmDgWEAAAAAElFTkSuQmCC"
-// CC BY NC 4.0
 
 
 const defTempStoryBoard = {
