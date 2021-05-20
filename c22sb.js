@@ -3,9 +3,9 @@
 C2v3 to StoryBoard v1.1.2 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
-JavaScript File licenced under private.
+JavaScript File licenced under MIT License.
 
-defDownClickIMG and defDownDragIMG is under private.
+defDownClickIMG and defDownDragIMG is under MIT License.
 
 */
 
