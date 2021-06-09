@@ -108,10 +108,39 @@
           });
         });
     }
+    function copyResult() {
+      if (!convertResult.hasOwnProperty('StoryBoard')) {
+        mdui.snackbar({
+          message: '请先转换谱面'
+        });
+        return;
+      }
+      let result = JSON.stringify(convertResult.StoryBoard)
+      const copyer = navigator.clipboard
+      if (!copyer) {
+        mdui.snackbar({
+          message: '不支持您的浏览器. 请使用 Chrome'
+        });
+      } else {
+        var blob = new Blob([result], { type: 'text/plain' });
+        var item = new ClipboardItem({ 'text/plain': blob });
+        copyer.write([item]).then(function () {
+          /* success */
+          mdui.snackbar({
+            message: '复制成功.'
+          });
+        }, function () {
+          /* failure */
+          mdui.snackbar({
+            message: '复制失败.'
+          });
+        });
+      }
+    }
   </script>
 </head>
 
-<body class="mdui-valign mdui-center">
+<body class="mdui-valign mdui-theme-layout-auto">
 
   <div class="mdui-card mdui-hoverable mdui-center" style="width: 500px">
 
@@ -244,7 +273,6 @@
       <button class="mdui-btn mdui-ripple" mdui-dialog-close>cancel</button>
     </div>
   </div>
-
 
 </body>
 
