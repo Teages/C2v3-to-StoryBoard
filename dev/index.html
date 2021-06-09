@@ -108,6 +108,35 @@
           });
         });
     }
+    function copyResult() {
+      if (!convertResult.hasOwnProperty('StoryBoard')) {
+        mdui.snackbar({
+          message: 'Please Convert First'
+        });
+        return;
+      }
+      let result = JSON.stringify(convertResult.StoryBoard)
+      const copyer = navigator.clipboard
+      if (!copyer) {
+        mdui.snackbar({
+          message: 'Not support your browser yet. Please use Chrome'
+        });
+      } else {
+        var blob = new Blob([result], { type: 'text/plain' });
+        var item = new ClipboardItem({ 'text/plain': blob });
+        copyer.write([item]).then(function () {
+          /* success */
+          mdui.snackbar({
+            message: 'Copied Successfully.'
+          });
+        }, function () {
+          /* failure */
+          mdui.snackbar({
+            message: 'Copied Failed.'
+          });
+        });
+      }
+    }
   </script>
 </head>
 
@@ -175,6 +204,7 @@
       </button>
       -->
       <button class="mdui-btn mdui-float-right" onclick="downloadResult()">Download</button>
+      <button class="mdui-btn mdui-float-right" onclick="copyResult()">Copy JSON Only</button>
     </div>
 
   </div>
