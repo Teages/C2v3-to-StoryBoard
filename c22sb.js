@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.1.2 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.1.3 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under MIT License.
@@ -210,7 +210,7 @@ const defTempStoryBoard = {
     "note_controllers": []
 }
 
-function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
+function c22sb(inputChart, tempStoryBoard = defTempStoryBoard, userSettings = {}) {
     let orginalChart = deepcopy(inputChart)
     let cleanedChart = {
         format_version: 1,
@@ -222,6 +222,11 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
         note_list: []
     }
     let StoryBoard = deepcopy(tempStoryBoard)
+
+    /*Import C22SB Settings*/
+    let Settings = {
+        DropNoteAbleTime: 0.400, // Seconds
+    }
 
     /* Chart preloader Start*/
     // tick to time pre load
@@ -321,10 +326,10 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             let ScanlineStart = Math.max(time, ScanlineUIEvents[ScanlineUIEvents.length - 1].time)
             switch (event.type) {
                 case 0:
-                    newScanlineColor(time,"#D25669",ScanlineColorEvents)
+                    newScanlineColor(time, "#D25669", ScanlineColorEvents)
                     break;
                 case 1:
-                    newScanlineColor(time,"#A0C8Bf",ScanlineColorEvents)
+                    newScanlineColor(time, "#A0C8Bf", ScanlineColorEvents)
                     break;
                 case 2:
                     // show UI
@@ -449,7 +454,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                     // not support for now
                     break
                 case 8:
-                    newScanlineColor(time,event.args.split(",")[1],ScanlineColorEvents)
+                    newScanlineColor(time, event.args.split(",")[1], ScanlineColorEvents)
                     break
                 default:
                     break
@@ -556,7 +561,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
                         if (tempo.tick > page.start_tick && tempo.tick < page.end_tick) {
                             let start_pos = (direction > 0 ? in_top_pos : in_bottom_pos)
                             let end_pos = (direction > 0 ? in_bottom_pos : in_top_pos)
-                            let tempo_pos = start_pos + direction * Math.abs(end_pos - start_pos) * ((tempo.tick - start_tick)/(end_tick - start_tick))
+                            let tempo_pos = start_pos + direction * Math.abs(end_pos - start_pos) * ((tempo.tick - start_tick) / (end_tick - start_tick))
                             ScanlineController.push({
                                 time: tickToTime(tempo.tick),
                                 scanline_pos: tempo_pos
@@ -618,12 +623,37 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             }
             orginalChart.note_list[note_p].y = Math.min(1, Math.max(0, y))
 
-            noteControllers.push({
-                'note': note.id,
-                'time': 0,
-                'override_y': true,
-                'y': orginalChart.note_list[note_p].y
-            })
+            if (note.type == 8 || note.type == 9) {
+                let effectedTime = tickToTime(note.tick) - Settings.DropNoteAbleTime;
+                noteControllers.push({
+                    'note': note.id,
+                    'time': 0,
+                    'override_y': true,
+                    'y': -1,
+                    'states': [
+                        {
+                            'time': 0,
+                            'y': -1,
+                        },
+                        {
+                            'time': effectedTime,
+                            'y': -1,
+                        },
+                        {
+                            'time': effectedTime,
+                            'y': orginalChart.note_list[note_p].y,
+                        }
+                    ]
+                })
+            } else {
+                noteControllers.push({
+                    'note': note.id,
+                    'time': 0,
+                    'override_y': true,
+                    'y': orginalChart.note_list[note_p].y
+                })
+            }
+
         } else {
             let y = (note.tick - page.start_tick) / (page.end_tick - page.start_tick)
             if (page.scan_line_direction < 0) {
@@ -711,16 +741,16 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             return;
         } else {
             for (let event_p = 0; event_p < cEvents.length; event_p++) {
-                if (time >= cEvents[event_p].time && time < cEvents[event_p+1].time) {
+                if (time >= cEvents[event_p].time && time < cEvents[event_p + 1].time) {
                     let translateScale = (time - cEvents[event_p].time) / (cEvents[event_p + 1].time - cEvents[event_p].time)
                     let lastColorRGB = hexToRgb(cEvents[event_p].scanline_color);
-                    let nextColorRGB = hexToRgb(cEvents[event_p+1].scanline_color);
+                    let nextColorRGB = hexToRgb(cEvents[event_p + 1].scanline_color);
                     let middleColor = rgbToHex(
-                        Math.abs(Math.min(lastColorRGB.r, nextColorRGB.r) + Math.abs(lastColorRGB.r - nextColorRGB.r)*translateScale),
-                        Math.abs(Math.min(lastColorRGB.g, nextColorRGB.g) + Math.abs(lastColorRGB.g - nextColorRGB.g)*translateScale),
-                        Math.abs(Math.min(lastColorRGB.b, nextColorRGB.b) + Math.abs(lastColorRGB.b - nextColorRGB.b)*translateScale)
+                        Math.abs(Math.min(lastColorRGB.r, nextColorRGB.r) + Math.abs(lastColorRGB.r - nextColorRGB.r) * translateScale),
+                        Math.abs(Math.min(lastColorRGB.g, nextColorRGB.g) + Math.abs(lastColorRGB.g - nextColorRGB.g) * translateScale),
+                        Math.abs(Math.min(lastColorRGB.b, nextColorRGB.b) + Math.abs(lastColorRGB.b - nextColorRGB.b) * translateScale)
                     )
-                    cEvents.splice(event_p+1)
+                    cEvents.splice(event_p + 1)
                     cEvents.push.apply(cEvents, [
                         { time: time, scanline_color: middleColor },
                         { time: time + 1, scanline_color: color },
@@ -745,7 +775,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard) {
             } : null;
         }
         function rgbToHex(r, g, b) {
-            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1,7);
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1, 7);
         }
 
     }
