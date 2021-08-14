@@ -229,7 +229,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard, userSettings = {}
 
     /*Import C22SB Settings*/
     let Settings = {
-        DropNoteAbleTime: 0.07, // Seconds
+        DropNoteAbleTime: 0.400, // Seconds
     }
 
     /* Chart preloader Start*/
