@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.1.3 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.1.4 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under MIT License.
@@ -26,6 +26,14 @@ const defTempStoryBoard = {
             "states": [
                 {
                     "add_time": 0,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.033,
+                    "opacity": 1
+                },
+                {
+                    "add_time": 0.0001,
                     "opacity": 0
                 },
                 {
@@ -192,7 +200,7 @@ const defTempStoryBoard = {
                     "letter_spacing": 0
                 },
                 {
-                    "add_time": 1.333,
+                    "add_time": 1.3661,
                     "letter_spacing": 100
                 }
             ]
