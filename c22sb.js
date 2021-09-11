@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.1.4 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.1.4(for Cylheim) - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under MIT License.
@@ -263,7 +263,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard, userSettings = {}
                 let newEvents = [Object.assign({
                     id: id,
                     time: time,
-                    text: text,
+                    text: text.replace(/\\\"/g, '\''),
                     color: color
                 }, StoryBoard.templates.eventText),
                 Object.assign({
