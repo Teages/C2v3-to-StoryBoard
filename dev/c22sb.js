@@ -732,6 +732,8 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard, userSettings = {}
 
     StoryBoard.note_controllers.push.apply(StoryBoard.note_controllers, deepcopy(noteControllers))
 
+    // C2V3 Backup
+    StoryBoard.chartBackup = deepcopy(inputChart)
 
     function newScanlineColor(time, color, cEvents) {
         let white = "#FFFFFF"

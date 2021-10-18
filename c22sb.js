@@ -1,6 +1,6 @@
 /*!
 
-C2v3 to StoryBoard v1.1.4(for Cylheim) - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
+C2v3 to StoryBoard v1.1.5 - A JavaScript for convert Cytus II Chart to Cytoid StoryBoard
 
 (c) 2021 Teages <teages [at] teages.xyz>
 JavaScript File licenced under MIT License.
@@ -263,7 +263,7 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard, userSettings = {}
                 let newEvents = [Object.assign({
                     id: id,
                     time: time,
-                    text: text.replace(/\\\"/g, '\''),
+                    text: text,
                     color: color
                 }, StoryBoard.templates.eventText),
                 Object.assign({
@@ -736,6 +736,8 @@ function c22sb(inputChart, tempStoryBoard = defTempStoryBoard, userSettings = {}
 
     StoryBoard.note_controllers.push.apply(StoryBoard.note_controllers, deepcopy(noteControllers))
 
+    // C2V3 Backup
+    StoryBoard.chartBackup = deepcopy(inputChart)
 
     function newScanlineColor(time, color, cEvents) {
         let white = "#FFFFFF"
